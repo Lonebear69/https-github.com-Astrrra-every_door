@@ -350,13 +350,9 @@ class _PoiEditorPageState extends ConsumerState<PoiEditorPage> {
                             textColor: Theme.of(context).colorScheme.onPrimary,
                             disabledColor: Theme.of(context).colorScheme.secondary,
                             disabledTextColor: Theme.of(context).colorScheme.onSecondary,
-                            child: Padding(
-                              child: Text(
-                                loc.editorSave,
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                              padding: EdgeInsets.only(
-                                  top: 13.0, bottom: 13.0 + bottomPadding),
+                            child: Text(
+                              loc.editorSave,
+                              style: TextStyle(fontSize: 20.0),
                             ),
                             onPressed: !modified
                                 ? null
