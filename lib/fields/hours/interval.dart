@@ -1,5 +1,3 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
-
 import 'hours_model.dart';
 import 'package:every_door/helpers/counter.dart';
 import 'package:flutter/material.dart';
@@ -116,8 +114,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                   start = value;
                   if (_state == _ChooserState.firstOnly) {
                     _state = _ChooserState.complete;
-                    if (widget.onChange != null)
-                      widget.onChange!(HoursInterval(start!, end!));
+                    if (widget.onChange != null) widget.onChange!(HoursInterval(start!, end!));
                   } else
                     _state = _ChooserState.second;
                 });
@@ -136,10 +133,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                 for (final t in timeDefaults.defaultEndTimes)
                   GridChooserItem(
                     value: t,
-                    label: '-' +
-                        (t.isRound
-                            ? t.toString().substring(0, 2)
-                            : t.toString()),
+                    label: '-' + (t.isRound ? t.toString().substring(0, 2) : t.toString()),
                     labelSuffix: t.isRound ? ':00' : null,
                     context: context,
                   ),
@@ -148,8 +142,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                 setState(() {
                   end = value;
                   _state = _ChooserState.complete;
-                  if (widget.onChange != null)
-                    widget.onChange!(HoursInterval(start!, end!));
+                  if (widget.onChange != null) widget.onChange!(HoursInterval(start!, end!));
                 });
               },
               onMoreTime: () {
@@ -173,11 +166,9 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                   start = value;
                 else
                   end = value;
-                if (_state == _ChooserState.second ||
-                    _state == _ChooserState.firstOnly) {
+                if (_state == _ChooserState.second || _state == _ChooserState.firstOnly) {
                   _state = _ChooserState.complete;
-                  if (widget.onChange != null)
-                    widget.onChange!(HoursInterval(start!, end!));
+                  if (widget.onChange != null) widget.onChange!(HoursInterval(start!, end!));
                 } else
                   _state = _ChooserState.second;
               });
@@ -202,8 +193,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                 for (final t in timeDefaults.defaultBreakStarts)
                   GridChooserItem(
                     value: t,
-                    label:
-                        t.isRound ? t.toString().substring(0, 2) : t.toString(),
+                    label: t.isRound ? t.toString().substring(0, 2) : t.toString(),
                     labelSuffix: t.isRound ? ':00-' : '-',
                     context: context,
                   ),
@@ -229,10 +219,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                   if (t > start!)
                     GridChooserItem(
                       value: t,
-                      label: '-' +
-                          (t.isRound
-                              ? t.toString().substring(0, 2)
-                              : t.toString()),
+                      label: '-' + (t.isRound ? t.toString().substring(0, 2) : t.toString()),
                       labelSuffix: t.isRound ? ':00' : null,
                       context: context,
                     ),
@@ -241,8 +228,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                 setState(() {
                   end = value;
                   _state = _ChooserState.complete;
-                  if (widget.onChange != null)
-                    widget.onChange!(HoursInterval(start!, end!));
+                  if (widget.onChange != null) widget.onChange!(HoursInterval(start!, end!));
                 });
               },
               onMoreTime: () {
@@ -253,17 +239,13 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
             );
           }
         } else {
-          final parentIntervalGood =
-              widget.breakParent!.start < widget.breakParent!.end;
+          final parentIntervalGood = widget.breakParent!.start < widget.breakParent!.end;
           final isOpens = _state != _ChooserState.second;
           result = HoursMinutesChooser(
             key: ValueKey(_state),
-            title: isOpens
-                ? loc.fieldHoursBreak
-                : '${loc.fieldHoursBreak} $start-',
+            title: isOpens ? loc.fieldHoursBreak : '${loc.fieldHoursBreak} $start-',
             big: false,
-            startHour: start?.hour ??
-                (parentIntervalGood ? widget.breakParent!.start.hour + 1 : 0),
+            startHour: start?.hour ?? (parentIntervalGood ? widget.breakParent!.start.hour + 1 : 0),
             endHour: parentIntervalGood ? widget.breakParent!.end.hour - 1 : 24,
             onChoose: (value) {
               if (isOpens) {
@@ -277,8 +259,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                   _state = _ChooserState.complete;
                   editingHours = false;
                 });
-                if (widget.onChange != null)
-                  widget.onChange!(HoursInterval(start!, end!));
+                if (widget.onChange != null) widget.onChange!(HoursInterval(start!, end!));
               }
             },
           );
@@ -338,12 +319,7 @@ class HoursMinutesChooser extends StatefulWidget {
   final String? title;
 
   const HoursMinutesChooser(
-      {required this.onChoose,
-      this.big = true,
-      this.title,
-      this.startHour = 0,
-      this.endHour = 23,
-      Key? key})
+      {required this.onChoose, this.big = true, this.title, this.startHour = 0, this.endHour = 23, Key? key})
       : super(key: key);
 
   @override
@@ -378,8 +354,7 @@ class _HoursMinutesChooserState extends State<HoursMinutesChooser> {
     }
 
     final loc = AppLocalizations.of(context)!;
-    final localTitle =
-        hour == null ? loc.fieldHoursHour : '$hour: ${loc.fieldHoursMinute}';
+    final localTitle = hour == null ? loc.fieldHoursHour : '$hour: ${loc.fieldHoursMinute}';
     return GridChooser<String>(
       title: '${widget.title ?? ""} $localTitle'.trimLeft(),
       columns: hour == null ? 5 : 4,
@@ -555,8 +530,7 @@ class TimeDefaults {
     updateFromAround(around ?? [], fragments);
   }
 
-  updateFromAround(List<String> hoursAround,
-      [Iterable<HoursFragment>? fragments]) {
+  updateFromAround(List<String> hoursAround, [Iterable<HoursFragment>? fragments]) {
     final kStart = RegExp(r'(?:^|Mo|Tu|We|Th|Fr|Sa|Su|;)\s*(\d?\d:\d\d)-');
     final kEnd = RegExp(r'-(\d?\d:\d\d)(?:$|;)');
     final kBreak = RegExp(r'-(\d?\d:\d\d),\s*(\d?\d:\d\d)-');
@@ -568,14 +542,10 @@ class TimeDefaults {
     final breakEnds = Counter<String>();
 
     for (final hours in hoursAround) {
-      for (final start in kStart.allMatches(hours))
-        starts.add(start.group(1)!.padLeft(5, '0'));
-      for (final end in kEnd.allMatches(hours))
-        ends.add(end.group(1)!.padLeft(5, '0'));
+      for (final start in kStart.allMatches(hours)) starts.add(start.group(1)!.padLeft(5, '0'));
+      for (final end in kEnd.allMatches(hours)) ends.add(end.group(1)!.padLeft(5, '0'));
       for (final break_ in kBreak.allMatches(hours)) {
-        breaks.add(break_.group(1)!.padLeft(5, '0') +
-            '-' +
-            break_.group(2)!.padLeft(5, '0'));
+        breaks.add(break_.group(1)!.padLeft(5, '0') + '-' + break_.group(2)!.padLeft(5, '0'));
         breakStarts.add(break_.group(1)!.padLeft(5, '0'));
         breakEnds.add(break_.group(2)!.padLeft(5, '0'));
       }
@@ -587,8 +557,7 @@ class TimeDefaults {
           starts.add(fragment.interval!.start.toString(), 10);
           ends.add(fragment.interval!.end.toString(), 10);
           breaks.addAll(fragment.breaks.map((b) => b.toString()), 10);
-          breakStarts.addAll(
-              fragment.breaks.map((b) => b.start.toString()), 10);
+          breakStarts.addAll(fragment.breaks.map((b) => b.start.toString()), 10);
           breakEnds.addAll(fragment.breaks.map((b) => b.end.toString()), 10);
         }
       }
@@ -621,14 +590,10 @@ class TimeDefaults {
     );
   }
 
-  List<T> _addFromAround<T>(
-      Iterable<T> base, Iterable<T> around, int targetCount,
-      [int? aroundCount]) {
+  List<T> _addFromAround<T>(Iterable<T> base, Iterable<T> around, int targetCount, [int? aroundCount]) {
     aroundCount ??= (targetCount / 4).ceil();
-    final timesToAdd = base
-        .take(targetCount - aroundCount)
-        .followedBy(around)
-        .followedBy(base.skip(targetCount - aroundCount));
+    final timesToAdd =
+        base.take(targetCount - aroundCount).followedBy(around).followedBy(base.skip(targetCount - aroundCount));
     final resultSet = <T>{};
     for (final item in timesToAdd) {
       resultSet.add(item);
