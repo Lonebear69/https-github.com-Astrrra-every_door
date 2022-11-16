@@ -275,7 +275,7 @@ class _PoiListPageState extends ConsumerState<PoiListPane> {
                       context: context,
                       builder: (BuildContext context) {
                         return Container(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.background,
                           height: 250.0,
                           padding: EdgeInsets.all(15.0),
                           child: PoiFilterPane(),

@@ -129,11 +129,11 @@ class _PhoneInputFieldState extends ConsumerState<PhoneInputField> {
             focusNode: _focus,
             keyboardType: TextInputType.phone,
             decoration: InputDecoration(
+              fillColor: Theme.of(context).colorScheme.primary.withAlpha(20),
               labelText: widget.field.label,
-              errorStyle: TextStyle(color: Colors.amber.shade700),
-              focusedErrorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Theme.of(context).primaryColor, width: 2.0)),
+              errorStyle: TextStyle(color: Theme.of(context).errorColor),
+              focusedErrorBorder:
+                  UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2.0)),
               suffixIcon: GestureDetector(
                 child: Icon(Icons.done),
                 onTap: () {
@@ -155,9 +155,8 @@ class _PhoneInputFieldState extends ConsumerState<PhoneInputField> {
             padding: const EdgeInsets.all(4.0),
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black87),
                 borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                color: Colors.blueGrey.shade50,
+                color: Theme.of(context).colorScheme.background,
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -165,7 +164,7 @@ class _PhoneInputFieldState extends ConsumerState<PhoneInputField> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 6.0),
                     child: GestureDetector(
-                      child: Text(number, style: kFieldTextStyle),
+                      child: Text(number, style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16.0)),
                       onTap: () {
                         if (kFollowLinks &&
                             RegExp(r'^\+?[0-9 .-]+$').hasMatch(number)) {

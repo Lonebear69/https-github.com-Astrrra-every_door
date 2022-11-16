@@ -67,6 +67,7 @@ class _EmailInputFieldState extends State<EmailInputField> {
         decoration: InputDecoration(
           hintText: widget.field.placeholder,
           labelText: widget.field.icon != null ? widget.field.label : null,
+          fillColor: Theme.of(context).colorScheme.primary.withAlpha(20),
         ),
         style: kFieldTextStyle,
         maxLength: value.length > 200 ? 255 : null,

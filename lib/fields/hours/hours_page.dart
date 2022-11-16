@@ -76,11 +76,8 @@ class _OpeningHoursPageState extends ConsumerState<OpeningHoursPage> {
           ),
         ],
       ),
-      backgroundColor: Colors.grey.shade200,
-      body: SafeArea(
-          child: isRaw
-              ? buildRawHoursEditor(context)
-              : buildFragmentsEditor(context)),
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: SafeArea(child: isRaw ? buildRawHoursEditor(context) : buildFragmentsEditor(context)),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.done),
         tooltip: loc.fieldHoursSave,
@@ -103,7 +100,7 @@ class _OpeningHoursPageState extends ConsumerState<OpeningHoursPage> {
         keyboardType: TextInputType.visiblePassword,
         autovalidateMode: AutovalidateMode.always,
         style: kFieldTextStyle,
-        decoration: InputDecoration(filled: true, fillColor: Colors.white),
+        decoration: InputDecoration(filled: true, fillColor: Theme.of(context).cardColor),
         maxLines: 5,
         onChanged: (value) {
           setState(() {
@@ -197,7 +194,7 @@ class _OpeningHoursPageState extends ConsumerState<OpeningHoursPage> {
         for (int i = 0; i < hours.fragments.length; i++)
           Card(
             // elevation: hours.fragments[i].active ? null : 0.0,
-            color: hours.fragments[i].active ? null : Colors.white60,
+            color: hours.fragments[i].active ? null : Theme.of(context).disabledColor,
             child: HoursFragmentEditor(
               fragment: hours.fragments[i],
               timeDefaults: timeDefaults,

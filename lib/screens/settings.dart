@@ -149,6 +149,7 @@ class SettingsPage extends ConsumerWidget {
                   ref.read(editorSettingsProvider.notifier).setLeftHand(value);
                 },
                 initialValue: editorSettings.leftHand,
+                activeSwitchColor: Theme.of(context).colorScheme.primary,
               ),
               SettingsTile(
                 title: Text(loc.settingsLanguage),
@@ -176,6 +177,7 @@ class SettingsPage extends ConsumerWidget {
                       .setFixNumKeyboard(value);
                 },
                 initialValue: editorSettings.fixNumKeyboard,
+                activeSwitchColor: Theme.of(context).colorScheme.primary,
               ),
               if (kShowContactSetting)
                 SettingsTile.switchTile(
@@ -186,6 +188,7 @@ class SettingsPage extends ConsumerWidget {
                         .setPreferContact(value);
                   },
                   initialValue: editorSettings.preferContact,
+                  activeSwitchColor: Theme.of(context).colorScheme.primary,
                 ),
               SettingsTile(
                 title: Text(loc.settingsDefaultPayment),
@@ -230,6 +233,7 @@ class SettingsPage extends ConsumerWidget {
                         .read(forceLocationProvider.notifier)
                         .set(!forceLocation);
                   },
+                  activeSwitchColor: Theme.of(context).colorScheme.primary,
                 ),
               ],
             ),

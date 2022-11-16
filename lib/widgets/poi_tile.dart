@@ -105,10 +105,9 @@ class PoiTile extends ConsumerWidget {
     return Container(
       padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: !amenity.isDisused ? Colors.white : Colors.grey.shade200,
-        border: showWarning
-            ? Border.all(color: Colors.yellowAccent, width: 3.0)
-            : null,
+        color: Theme.of(context).colorScheme.primary.withAlpha(20),
+        border: showWarning ? Border.all(color: Theme.of(context).colorScheme.primary, width: 3.0) : null,
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
       ),
       width: width,
       child: Row(
@@ -127,7 +126,8 @@ class PoiTile extends ConsumerWidget {
                     padding: EdgeInsets.only(right: 8.0),
                     child: Icon(
                       amenity.isOld ? Icons.check : Icons.check_circle,
-                      color: amenity.isOld ? Colors.black : Colors.green,
+                      color:
+                          amenity.isOld ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.primary,
                       size: 30.0,
                     ),
                   ),
@@ -161,7 +161,7 @@ class PoiTile extends ConsumerWidget {
                       TextSpan(text: '\n'),
                       TextSpan(
                         text: '${loc.tileNo} $missing',
-                        style: TextStyle(backgroundColor: Colors.red.shade50),
+                        style: TextStyle(backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(50)),
                       ),
                     ],
                   ],

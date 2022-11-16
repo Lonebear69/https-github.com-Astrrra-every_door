@@ -65,7 +65,7 @@ class _PoiFilterPaneState extends ConsumerState<PoiFilterPane> {
 
     String empty = loc.filterEmpty;
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.background,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -86,9 +86,9 @@ class _PoiFilterPaneState extends ConsumerState<PoiFilterPane> {
               } else if (value == empty) {
                 ref.read(poiFilterProvider.state).state =
                     filter.copyWith(address: StreetAddress.empty);
+                ref.read(poiFilterProvider.state).state = filter.copyWith(address: StreetAddress.empty);
               } else {
-                final addr = nearestAddresses
-                    .firstWhere((element) => element.toString() == value);
+                final addr = nearestAddresses.firstWhere((element) => element.toString() == value);
                 // Clearing floors when the address has changed.
                 ref.read(poiFilterProvider.state).state = filter.copyWith(
                   address: addr,
@@ -102,9 +102,7 @@ class _PoiFilterPaneState extends ConsumerState<PoiFilterPane> {
           Text(loc.filterByFloor, style: kFieldTextStyle),
           RadioField(
             options: floors.map((e) => e.string).toList() + [empty],
-            value: (filter.floor?.isEmpty ?? false)
-                ? empty
-                : filter.floor?.string,
+            value: (filter.floor?.isEmpty ?? false) ? empty : filter.floor?.string,
             onChange: (value) {
               Floor newFloor;
               if (value == null) {
@@ -118,7 +116,7 @@ class _PoiFilterPaneState extends ConsumerState<PoiFilterPane> {
                   filter.copyWith(floor: newFloor);
             },
           ),
-          SizedBox(height: 10.0),
+          SizedBox(height: 8.0),
           SwitchListTile(
             value: filter.notChecked,
             onChanged: (value) {

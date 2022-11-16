@@ -166,8 +166,8 @@ class _NameInputFieldState extends State<NameInputField> {
                     : TextCapitalization.none,
                 decoration: InputDecoration(
                   hintText: widget.field.placeholder,
-                  labelText:
-                      widget.field.icon != null ? widget.field.label : null,
+                  labelText: widget.field.icon != null ? widget.field.label : null,
+                  fillColor: Theme.of(context).colorScheme.primary.withAlpha(20),
                 ),
                 style: kFieldTextStyle,
                 onChanged: (value) {
@@ -209,6 +209,7 @@ class _NameInputFieldState extends State<NameInputField> {
                         : TextCapitalization.none,
                     decoration: InputDecoration(
                       hintText: _langData.dataForKey(key)?.nameLoc ?? key,
+                      fillColor: Theme.of(context).colorScheme.primary.withAlpha(20),
                     ),
                     style: kFieldTextStyle,
                     onChanged: (value) {

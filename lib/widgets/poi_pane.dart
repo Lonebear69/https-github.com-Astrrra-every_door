@@ -23,7 +23,8 @@ class _PoiPaneState extends ConsumerState<PoiPane> {
     return widget.amenities.isEmpty
         ? nothingAroundPane(context)
         : Container(
-            color: Colors.grey.shade100,
+            // Color is canvasColor, but much darker
+            color: Theme.of(context).canvasColor,
             child: buildGridHorizontal(context),
           );
   }

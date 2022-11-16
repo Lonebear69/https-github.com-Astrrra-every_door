@@ -173,6 +173,7 @@ class _TypeChooserPageState extends ConsumerState<TypeChooserPage> {
               prefixIcon: Icon(Icons.search),
               hintText: loc.chooseType + '...',
               border: InputBorder.none,
+              fillColor: Theme.of(context).colorScheme.primary.withAlpha(20),
               suffixIcon: IconButton(
                 icon: Icon(Icons.clear),
                 tooltip: loc.chooseTypeClear,

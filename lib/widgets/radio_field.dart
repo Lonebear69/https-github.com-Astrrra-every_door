@@ -188,22 +188,23 @@ class RadioPill extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: selected ? Theme.of(context).primaryColor : null,
-            border: Border.all(),
-            borderRadius: BorderRadius.circular(15.0),
+            color:
+                selected ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.primary.withAlpha(20),
+            borderRadius: BorderRadius.circular(5.0),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.primary,
+              width: 1.0,
+            ),
           ),
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
           child: IconTheme(
             data: IconThemeData(
-              color:
-                  selected ? Theme.of(context).selectedRowColor : Colors.black,
+              color: selected ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary,
             ),
             child: DefaultTextStyle(
               child: label,
               style: kFieldTextStyle.copyWith(
-                color: selected
-                    ? Theme.of(context).selectedRowColor
-                    : Colors.black,
+                color: selected ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary,
               ),
             ),
           ),

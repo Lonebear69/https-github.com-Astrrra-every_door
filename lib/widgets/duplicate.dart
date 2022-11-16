@@ -77,13 +77,13 @@ class _DuplicateWarningState extends ConsumerState<DuplicateWarning> {
 
     return GestureDetector(
       child: Container(
-        color: Colors.yellow,
+        color: Theme.of(context).colorScheme.error.withAlpha(100),
         padding: EdgeInsets.symmetric(vertical: 5.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Icon(Icons.warning, color: Colors.orange),
+            Icon(Icons.warning, color: Theme.of(context).colorScheme.error),
             const SizedBox(width: 5.0),
             Flexible(
               child: Text(

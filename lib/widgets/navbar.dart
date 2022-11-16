@@ -49,8 +49,8 @@ class BrowserNavigationBar extends ConsumerWidget {
               },
         icon: Icon(Icons.download),
         tooltip: loc.navDownload,
-        color: Colors.white70,
-        disabledColor: Colors.white10,
+        color: Theme.of(context).colorScheme.onPrimaryContainer,
+        disabledColor: Theme.of(context).colorScheme.onPrimaryContainer.withAlpha(128),
       );
     } else {
       dataButton = IconButton(
@@ -97,7 +97,7 @@ class BrowserNavigationBar extends ConsumerWidget {
           ? Icons.map_outlined
           : Icons.map),
       tooltip: loc.navImagery,
-      color: Colors.white70,
+      color: Theme.of(context).colorScheme.onPrimaryContainer,
     );
 
     const kEditorModes = [
@@ -116,16 +116,15 @@ class BrowserNavigationBar extends ConsumerWidget {
 
     final leftHand = ref.watch(editorSettingsProvider).leftHand;
     return Container(
-      color: Colors.black87,
+      color: Theme.of(context).colorScheme.primaryContainer,
       padding: EdgeInsets.only(bottom: bottomPadding),
       child: Row(
         children: [
           Expanded(child: leftHand ? imageryButton : dataButton),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              color: Colors.black,
-            ),
+                borderRadius: BorderRadius.circular(15.0),
+                color: Theme.of(context).colorScheme.onPrimaryContainer.withAlpha(50)),
             padding: EdgeInsets.symmetric(horizontal: 10.0),
             child: Row(
               children: [
@@ -135,7 +134,9 @@ class BrowserNavigationBar extends ConsumerWidget {
                         ? kEditorModeIcons[mode]!
                         : kEditorModeIconsOutlined[mode]!),
                     tooltip: editorModeTooltips[mode],
-                    color: editorMode == mode ? Colors.yellow : Colors.white70,
+                    color: editorMode == mode
+                        ? Theme.of(context).colorScheme.primary
+                        : ColorScheme.light().background.withAlpha(200),
                     onPressed: () {
                       ref.read(editorModeProvider.notifier).set(mode);
                     },

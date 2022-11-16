@@ -90,7 +90,7 @@ class _WebsiteInputFieldState extends ConsumerState<WebsiteInputField> {
               for (final provider in websiteProviders)
                 GestureDetector(
                   child: Container(
-                    color: kFieldColor.withOpacity(0.2),
+                    color: Theme.of(context).cardColor,
                     padding: EdgeInsets.symmetric(
                       vertical: 4.0,
                       horizontal: 8.0,
@@ -151,7 +151,7 @@ class _WebsiteInputFieldState extends ConsumerState<WebsiteInputField> {
               ),
               child: Icon(
                 _provider.icon,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.primary,
                 size: 20.0,
               ),
               onPressed: showProviderChooser,
@@ -174,6 +174,7 @@ class _WebsiteInputFieldState extends ConsumerState<WebsiteInputField> {
                           _fieldFocus.unfocus();
                       },
                     ),
+                    fillColor: Theme.of(context).colorScheme.primary.withAlpha(20),
                   ),
                   onSubmitted: submitWebsite,
                   onChanged: (value) {
@@ -191,9 +192,8 @@ class _WebsiteInputFieldState extends ConsumerState<WebsiteInputField> {
             padding: const EdgeInsets.all(4.0),
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black87),
                 borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                color: Colors.blueGrey.shade50,
+                color: Theme.of(context).colorScheme.background,
               ),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -204,10 +204,8 @@ class _WebsiteInputFieldState extends ConsumerState<WebsiteInputField> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: GestureDetector(
-                        child: Text(
-                            cutEllipsis(
-                                website.provider.display(website.value), 25),
-                            style: kFieldTextStyle),
+                        child: Text(cutEllipsis(website.provider.display(website.value), 25),
+                            style: TextStyle(fontSize: 16.0, color: Theme.of(context).colorScheme.primary)),
                         onTap: () {
                           final url = website.provider.url(website.value);
                           if (kFollowLinks && url != null) {

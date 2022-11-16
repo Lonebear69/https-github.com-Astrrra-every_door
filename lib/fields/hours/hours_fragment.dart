@@ -104,7 +104,7 @@ class _HoursFragmentEditorState extends State<HoursFragmentEditor> {
                   },
                   icon: Icon(Icons.close),
                   tooltip: loc.fieldHoursRemoveBreak,
-                  color: Colors.grey,
+                  color: Theme.of(context).colorScheme.error,
                 ),
               ],
             ),

@@ -132,6 +132,12 @@ class _HoursInputFieldState extends ConsumerState<HoursInputField> {
                         loc.fieldHoursButton,
                     style: kFieldTextStyle),
               ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.background,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 1.0),
+                shadowColor: Colors.transparent,
+              ),
             ),
           ),
           if (mostCommonHours != null &&

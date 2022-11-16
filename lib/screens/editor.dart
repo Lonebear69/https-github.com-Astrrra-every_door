@@ -264,6 +264,7 @@ class _PoiEditorPageState extends ConsumerState<PoiEditorPage> {
         }
       },
       child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           title: GestureDetector(
             child: Text(preset?.name ?? amenity.name ?? 'Editor'),
@@ -339,16 +340,16 @@ class _PoiEditorPageState extends ConsumerState<PoiEditorPage> {
                   ),
                   Container(
                     // padding: EdgeInsets.only(bottom: bottomPadding),
-                    color: modified ? Colors.green : Colors.white,
+                    color: modified ? Colors.green : Theme.of(context).colorScheme.secondary,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: MaterialButton(
                             color: Colors.green,
-                            textColor: Colors.white,
-                            disabledColor: Colors.white,
-                            disabledTextColor: Colors.grey,
+                            textColor: Theme.of(context).colorScheme.onPrimary,
+                            disabledColor: Theme.of(context).colorScheme.secondary,
+                            disabledTextColor: Theme.of(context).colorScheme.onSecondary,
                             child: Padding(
                               child: Text(
                                 loc.editorSave,
@@ -371,7 +372,7 @@ class _PoiEditorPageState extends ConsumerState<PoiEditorPage> {
                             child: IconButton(
                               icon: Icon(Icons.check),
                               tooltip: loc.editorMarkChecked,
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.onPrimary,
                               iconSize: 30.0,
                               onPressed: saveAndClose,
                             ),
@@ -495,16 +496,16 @@ class _PoiEditorPageState extends ConsumerState<PoiEditorPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(Icons.location_pin),
+                          Icon(Icons.location_pin, color: Theme.of(context).colorScheme.primary),
                           SizedBox(width: 2.0),
                           Container(
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.7),
+                              color: Theme.of(context).colorScheme.primary,
                               borderRadius: BorderRadius.circular(5.0),
                             ),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 5.0),
-                            child: Text(loc.editorMove),
+                            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                            child:
+                                Text(loc.editorMove, style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
                           ),
                         ],
                       ),

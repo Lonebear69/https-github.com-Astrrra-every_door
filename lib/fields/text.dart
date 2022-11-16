@@ -83,8 +83,12 @@ class _TextInputFieldState extends ConsumerState<TextInputField> {
         decoration: InputDecoration(
           hintText: widget.field.placeholder,
           labelText: widget.field.icon != null ? widget.field.label : null,
+          fillColor: Theme.of(context).colorScheme.primary.withAlpha(20),
         ),
-        style: kFieldTextStyle,
+        style: TextStyle(
+          fontSize: 16.0,
+          color: Theme.of(context).colorScheme.primary,
+        ),
         maxLines: widget.field.maxLines ?? 1,
         minLines: 1,
         maxLength:

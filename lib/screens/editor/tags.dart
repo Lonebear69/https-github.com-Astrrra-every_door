@@ -126,12 +126,11 @@ class _TagEditorPageState extends State<TagEditorPage> {
                           controller: controllers[key],
                           style: kFieldTextStyle,
                           decoration: InputDecoration(
-                              fillColor:
-                                  !widget.amenity.newTags.containsKey(key)
-                                      ? Colors.grey.shade100
-                                      : (widget.amenity[key] == null
-                                          ? Colors.red.shade100
-                                          : Colors.yellow.shade100),
+                              fillColor: !widget.amenity.newTags.containsKey(key)
+                                  ? Theme.of(context).disabledColor
+                                  : (widget.amenity[key] == null
+                                      ? Theme.of(context).colorScheme.error
+                                      : Theme.of(context).colorScheme.secondary),
                               filled: true),
                           onChanged: (value) {
                             value = value.trim();

@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 import 'package:logging/logging.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 
 void main() {
   Logger.root.level = kDebugMode ? Level.INFO : Level.WARNING;
@@ -41,13 +42,23 @@ installCertificate() async {
 class EveryDoorApp extends ConsumerWidget {
   const EveryDoorApp({Key? key}) : super(key: key);
 
+  static final _defaultLightColorScheme = ColorScheme.fromSwatch(primarySwatch: Colors.blue);
+
+  static final _defaultDarkColorScheme =
+      ColorScheme.fromSwatch(primarySwatch: Colors.blue, brightness: Brightness.dark);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
+    return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
+      return MaterialApp(
         title: kAppTitle,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-          hintColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+          colorScheme: lightColorScheme ?? _defaultLightColorScheme,
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData(
+          colorScheme: darkColorScheme ?? _defaultDarkColorScheme,
+          useMaterial3: true,
         ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         // Adding "en" to the front so it's used by default.
@@ -58,6 +69,7 @@ class EveryDoorApp extends ConsumerWidget {
           if (child != null) child,
           DropdownAlert(delayDismiss: 5000),
         ]),
-    );
+      );
+    });
   }
 }

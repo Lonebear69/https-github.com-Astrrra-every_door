@@ -50,6 +50,7 @@ dependencies:
   encrypt: ^5.0.1
   flutter_markdown: ^0.6.10+2
   path_drawing: ^1.0.0
+  dynamic_color: ^1.5.4
 
 # Uncomment this for publishing on F-Droid
 #fdependency_overrides:

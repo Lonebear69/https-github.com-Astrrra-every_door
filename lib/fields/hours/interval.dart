@@ -1,3 +1,5 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
+
 import 'hours_model.dart';
 import 'package:every_door/helpers/counter.dart';
 import 'package:flutter/material.dart';
@@ -104,9 +106,9 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                 for (final t in timeDefaults.defaultStartTimes)
                   GridChooserItem(
                     value: t,
-                    label:
-                        t.isRound ? t.toString().substring(0, 2) : t.toString(),
+                    label: t.isRound ? t.toString().substring(0, 2) : t.toString(),
                     labelSuffix: t.isRound ? ':00-' : '-',
+                    context: context,
                   ),
               ],
               onChoose: (value) {
@@ -139,6 +141,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                             ? t.toString().substring(0, 2)
                             : t.toString()),
                     labelSuffix: t.isRound ? ':00' : null,
+                    context: context,
                   ),
               ],
               onChoose: (value) {
@@ -202,6 +205,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                     label:
                         t.isRound ? t.toString().substring(0, 2) : t.toString(),
                     labelSuffix: t.isRound ? ':00-' : '-',
+                    context: context,
                   ),
               ],
               onChoose: (value) {
@@ -230,6 +234,7 @@ class _ChooserIntervalFieldState extends State<ChooserIntervalField> {
                               ? t.toString().substring(0, 2)
                               : t.toString()),
                       labelSuffix: t.isRound ? ':00' : null,
+                      context: context,
                     ),
               ],
               onChoose: (value) {
@@ -358,6 +363,7 @@ class _HoursMinutesChooserState extends State<HoursMinutesChooser> {
                 value: (index + widget.startHour).toString().padLeft(2, "0"),
                 label: (index + widget.startHour).toString(),
                 labelSuffix: ':',
+                context: context,
               ));
     } else {
       options = Iterable.generate(12, (i) => i * 5)
@@ -366,6 +372,7 @@ class _HoursMinutesChooserState extends State<HoursMinutesChooser> {
                 value: v,
                 label: int.parse(v) % 15 == 0 ? ':$v' : '',
                 labelSuffix: int.parse(v) % 15 == 0 ? '' : ':$v',
+                context: context,
               ))
           .toList();
     }
@@ -425,7 +432,7 @@ class GridChooser<T> extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(fontSize: baseSize, color: Colors.grey),
+                style: TextStyle(fontSize: baseSize, color: Theme.of(context).primaryColor),
               ),
               if (onMoreTime != null)
                 IconButton(
@@ -452,8 +459,7 @@ class GridChooser<T> extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 5.0),
                             child: DefaultTextStyle(
                               child: options[i + j].buildWidget(),
-                              style: TextStyle(
-                                  fontSize: 30.0, color: Colors.black),
+                              style: TextStyle(fontSize: 30.0, color: Theme.of(context).primaryColor),
                             ),
                           ),
                           onPressed: () {
@@ -474,15 +480,15 @@ class GridChooserItem<T> {
   final T value;
   final String label;
   final String? labelSuffix;
+  final BuildContext context;
 
-  const GridChooserItem(
-      {required this.value, required this.label, this.labelSuffix});
+  const GridChooserItem({required this.value, required this.label, this.labelSuffix, required this.context});
 
   Widget buildWidget() {
     if (labelSuffix == null) return Text(label);
     return Text.rich(TextSpan(children: [
-      TextSpan(text: label, style: TextStyle(color: Colors.black)),
-      TextSpan(text: labelSuffix, style: TextStyle(color: Colors.black45)),
+      TextSpan(text: label, style: TextStyle(color: Theme.of(context).primaryColor)),
+      TextSpan(text: labelSuffix, style: TextStyle(color: Theme.of(context).primaryColorLight)),
     ]));
   }
 }
